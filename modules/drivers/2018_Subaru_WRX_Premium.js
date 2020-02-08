@@ -58,8 +58,8 @@ exports.addMessage = function($ch,$dt) {
       $rd.stng.tir = Math.round($rd.stng.percent * (180 * 2.7) / 14.4);
       break;
     case "0D1":
-      $rd.pdl.brkPrs = dataDecode3($dt,"d",16,8,"b",0,1.20481927711,0,0);
-      $rd.spd.MPH = dataDecode3($dt,"d",16,16,"l",0,0.0349521,0,0);
+      $rd.pdl.brkPrs = dataDecode3($dt,"d",16,8,"b",0,1.20481927711,0);
+      $rd.spd.MPH = dataDecode3($dt,"d",16,16,"l",0,0.0349521,0);
       $rd.spd.avgMPH = $rd.trip.scrTrp/($rd.trip.scrTime/3600000);
       break;
     case "0D3":
@@ -347,7 +347,7 @@ function HHMMSS($in) {
 	return hours+'h '+minutes+'\''+seconds+'"';
 }
 
-function dataDecode3(b, a, c, d, f, e, g, k, h) {
+function dataDecode3(b, a, c, d, f, e, g, k, h) { //input,mode,offset,length,bit/little,pre,multiplier,post,avg
   a = void 0 === a ? "d" : a;
   c = void 0 === c ? 0 : c;
   d = void 0 === d ? 4 * b.length : d;

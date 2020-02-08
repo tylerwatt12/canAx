@@ -39,7 +39,7 @@
 						document.getElementById("shift-3").className = "hide";
 						document.getElementById("shift-light").className = "blinkShiftLightOff";
 					}
-					if ($rd.ltg.hl == "0"){ // headlights on
+					if ($rd.ltg.HL == "0"){ // headlights on
 						document.body.className = "dayTheme";
 					}else{
 						document.body.className = "nightTheme";
@@ -54,7 +54,7 @@
 					document.getElementById('boost').textContent = Math.round($rd.ngn.boost);
 					document.getElementById('tbody').style.height = Math.round(($rd.ngn.tbody)*4.3)+"px";
 					document.getElementById('accel').style.height = Math.round(($rd.pdl.accel)*4.3)+"px";
-					document.getElementById('speedo').textContent = $rd.spd.MPH;
+					document.getElementById('speedo').textContent = Math.round($rd.spd.MPH);
 					document.getElementById('gear').textContent = $rd.trns.gear;
 					document.getElementById('coolant').textContent = Math.round($rd.tmp.clnt);
 					document.getElementById('oil').textContent = Math.round($rd.tmp.oil);
