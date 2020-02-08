@@ -1,4 +1,10 @@
-
+/*
+  File: 2018_Subar_WRX_Premium.js
+  Author: Tyler Watthanaphand
+  License: GNU GPLv3
+  Notes: Driver spec file to decode CAN messages from candump into a JS object.
+  Note about little endian byte swapping: Passing data into dataDecode3 function as little endian, byte swapping is done first, then offset and length functions are performed.
+*/
 $vinParse = [];
 $avgGPHCnt = 1;
 $rd = { wpr: '0',
@@ -299,7 +305,6 @@ exports.addMessage = function($ch,$dt) {
     case "660":
       $rd.trip.timeSec = dataDecode3($dt,"d",48,16,"b",0,0.1,0);
       $rd.trip.timeDisp = HHMMSS($rd.trip.timeSec);
-      console.log($rd.trip.timeDisp);
       $rd.trip.scrTime = Date.now()-$rd.trip.scrTimeStart; // time in ms since script load
       break;
     case "6D1":
