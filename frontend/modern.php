@@ -4,6 +4,7 @@
 <!doctype html>
 <html>
 	<head>
+		<title>CanAx - Modern</title>
 		<script src='/js/socket.io.js'></script>
 		<link rel="stylesheet" type="text/css" href="/css/template-modern.css">
 		<!-- CONTROLLER MODULE CSS -->

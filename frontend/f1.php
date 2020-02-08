@@ -3,43 +3,21 @@
 ?>
 <!doctype html>
 <html>
-	<head>
+	<head>	
+		<title>CanAx - F1</title>
 		<script src='/js/socket.io.js'></script>
 		<link rel="stylesheet" type="text/css" href="/css/template-f1.css">
+		<!-- CONVERSIONS MODULE JS -->
+			<script src="/modules/conversions/conversions.js"></script>
 		<!-- CONTROLLER MODULE CSS -->
 			<link rel="stylesheet" type="text/css" href="/modules/mode-switcher/mode-switcher.css">
-		<!-- END CONTROLLER MODULE CSS -->
 		<!-- HVAC MODULE CSS -->
 			<link rel="stylesheet" type="text/css" href="/modules/hvac-disp/hvac-disp.css">
-		<!-- END HVAC MODULE CSS -->
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 		<meta http-equiv="Pragma" content="no-cache">
 		<meta http-equiv="Expires" content="0">
 		<script type="text/javascript">
-			function logBig(position,min,max) {
-				var minv = Math.log(min);
-				var maxv = Math.log(max);
-				// calculate adjustment factor
-				var scale = (maxv-minv) / (max-min);
-				$out = (Math.log(position)-minv) / scale + min;
-				if ($out == "-Infinity") {
-					return 0;
-				}else{
-					return $out;
-				}
-			}
-			function HHMMSS($in) {
-				var sec_num = parseInt($in, 10); // don't forget the second param
-				var hours   = Math.floor(sec_num / 3600);
-				var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
-				var seconds = sec_num - (hours * 3600) - (minutes * 60);
-
-				if (hours   < 10) {hours   = "0"+hours;}
-				if (minutes < 10) {minutes = "0"+minutes;}
-				if (seconds < 10) {seconds = "0"+seconds;}
-				return hours+'h '+minutes+'\''+seconds+'"';
-			}
 			var socket = io("<?php echo $socketIOURL; ?>");
 			socket.on('data', function (data) {
 				$rd = data;
@@ -81,11 +59,11 @@
 					document.getElementById('coolant').textContent = Math.round($rd.tmp.clnt);
 					document.getElementById('oil').textContent = Math.round($rd.tmp.oil);
 					document.getElementById('mpg').textContent = Math.round($rd.fuel.MPG);
-					document.getElementById('mga').textContent = Math.round($rd.fuel.avgMPG*10)/10;
-					document.getElementById('gph').textContent = Math.round($rd.fuel.GPH*1000)/1000;
+					document.getElementById('mga').textContent = roundPrec($rd.fuel.avgMPG,1);
+					document.getElementById('gph').textContent = roundPrec($rd.fuel.GPH,2);
 
-					document.getElementById('odo').textContent = Math.round($rd.trip.odo*10)/10;
-					document.getElementById('trip').textContent = Math.round($rd.trip.scrTrp*10)/10;
+					document.getElementById('odo').textContent = roundPrec($rd.trip.odo,1);
+					document.getElementById('trip').textContent = roundPrec($rd.trip.scrTrp,1);
 					document.getElementById('trtm').textContent = $rd.trip.timeDisp;
 					document.getElementById('sctm').textContent = HHMMSS($rd.trip.scrTime/1000);
 

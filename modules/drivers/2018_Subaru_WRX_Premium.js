@@ -42,7 +42,7 @@ $rd = { wpr: '0',
      wssAvg: 0 },
   fuel: { avgMPG: 0, avgGPH: 0, MPG: 0, GPH: 0},
   TPMS: { FL: 0, FR: 0, RL: 0, RR: 0 },
-  info: { vin: 'NODATA_____NODATA', my: 2018, make: 'SUBARU', model: 'WRX', trim: 'PREMIUM', loc: 'USDM', profile : '2018_Subaru_WRX_Premium.js'},
+  info: { vin: 'LOADING VIN      ', my: 2018, make: 'SUBARU', model: 'WRX', trim: 'PREMIUM', loc: 'USDM', profile : '2018_Subaru_WRX_Premium.js'},
   trip: { odo: 0, timeDisp: '0h 0\'', timeSec: 0, scrTime: Date.now(), scrTimeStart: Date.now(), scrOdo: 0, scrTrp: 0} };
 
 $rd.d = { };
@@ -316,13 +316,15 @@ exports.addMessage = function($ch,$dt) {
       $rd.d.D6D1_2 = dataDecode3($dt,"d",8,8,"b",0,1,0); // troubleshoot this
       break;
     case "6FC":
-      $byte = dataDecode3($dt,"d",40,8,"b",0,1,0,0);
-      $letter = dataDecode3($dt,"d",48,8,"b",0,1,0,0);
-      $vinParse[$byte] = String.fromCharCode($letter);
-      if ($vinParse.join("").length === 17) {
-        $rd.info.vin = $vinParse.join("");
-      }else{
-        $rd.info.vin = "LOADING VIN "+$vinParse.join("").length+"/17";
+      if ($rd.info.vin.substr(0,11) === "LOADING VIN") { //prevents this bit of code from running forever needlessly. VIN's dont change while car is running.
+        $byte = dataDecode3($dt,"d",40,8,"b",0,1,0,0);
+        $letter = dataDecode3($dt,"d",48,8,"b",0,1,0,0);
+        $vinParse[$byte] = String.fromCharCode($letter);
+        if ($vinParse.join("").length === 17) {
+          $rd.info.vin = $vinParse.join("");
+        }else{
+          $rd.info.vin = "LOADING VIN "+$vinParse.join("").length+"/17";
+        }
       }
       break;
   }

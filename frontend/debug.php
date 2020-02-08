@@ -4,6 +4,7 @@
 <!doctype html>
 <html>
 	<head>
+		<title>CanAx - Debug</title>
 		<script src='/js/socket.io.js'></script>
 		
 		<style>

@@ -1,16 +1,15 @@
 <?php
-$msMenuItem[] = Array('href' => "#", 'onClick' => "", 'value' => "Test");
-$msMenuItem[] =	Array('href' => "#", 'onClick' => "$showMenu = 0;", 'value' => "Cancel");
-$msMenuItem[] =	Array('href' => "#", 'onClick' => "window.location.href=window.location.href", 'value' => "Refresh");
-$msMenuItem[] =	Array('href' => "/sysctl.php?cmd=shutdown", 'onClick' => "", 'value' => "Power Off");
-$msMenuItem[] =	Array('href' => "/sysctl.php?cmd=reboot", 'onClick' => "", 'value' => "Reboot");
-$msMenuItem[] =	Array('href' => "/?page=timer", 'onClick' => "", 'value' => "Mode: Timer");
-$msMenuItem[] =	Array('href' => "/?page=modern", 'onClick' => "", 'value' => "Mode: Modern");
-$msMenuItem[] =	Array('href' => "/?page=f1", 'onClick' => "", 'value' => "Mode: F1");
-$msMenuItem[] =	Array('href' => "/?page=debug", 'onClick' => "", 'value' => "Mode: Debug");
-$msMenuItem[] =	Array('href' => "/sysctl.php?cmd=flip", 'onClick' => "", 'value' => "Flip");
-$msMenuItem[] =	Array('href' => "/sysctl.php?cmd=rec", 'onClick' => "", 'value' => "Record");
-$msMenuItem[] =	Array('href' => "/sysctl.php?cmd=can", 'onClick' => "", 'value' => "Emulate/Live");
+$msMenuItem[] =	Array('href' => '#', 'onClick' => '$showMenu = 0;', 'value' => 'Cancel');
+$msMenuItem[] =	Array('href' => '#', 'onClick' => 'window.location.href=window.location.href', 'value' => 'Refresh');
+$msMenuItem[] =	Array('href' => '/sysctl.php?cmd=shutdown', 'onClick' => '', 'value' => 'Power Off');
+$msMenuItem[] =	Array('href' => '/sysctl.php?cmd=reboot', 'onClick' => '', 'value' => 'Reboot');
+$msMenuItem[] =	Array('href' => '/?page=timer', 'onClick' => '', 'value' => 'Mode: Timer');
+$msMenuItem[] =	Array('href' => '/?page=modern', 'onClick' => '', 'value' => 'Mode: Modern');
+$msMenuItem[] =	Array('href' => '/?page=f1', 'onClick' => '', 'value' => 'Mode: F1');
+$msMenuItem[] =	Array('href' => '/?page=debug', 'onClick' => '', 'value' => 'Mode: Debug');
+$msMenuItem[] =	Array('href' => '/sysctl.php?cmd=flip', 'onClick' => '', 'value' => 'Flip');
+$msMenuItem[] =	Array('href' => '/sysctl.php?cmd=rec', 'onClick' => '', 'value' => 'Record');
+$msMenuItem[] =	Array('href' => '/sysctl.php?cmd=can', 'onClick' => '', 'value' => 'Emulate/Live');
 
 ?>
 <!-- CONTROLLER MODULE UI -->
@@ -23,17 +22,14 @@ $msMenuItem[] =	Array('href' => "/sysctl.php?cmd=can", 'onClick' => "", 'value' 
 	<div>
 		<a id="ms-menuTitle">Main Menu</a>
 		<h2>
-			<a href="/sysctl.php?cmd=can" id="ms-menuItem10" class="ms-menuItem">Emulate/Live</a><br>
-			<a href="/sysctl.php?cmd=rec" id="ms-menuItem9" class="ms-menuItem">Record</a><br>
-			<a href="/sysctl.php?cmd=flip" id="ms-menuItem8" class="ms-menuItem">Flip</a><br>
-			<a href="/?page=debug" id="ms-menuItem7" class="ms-menuItem">Mode: Debug</a><br>
-			<a href="/?page=f1" id="ms-menuItem6" class="ms-menuItem">Mode: F1</a><br>
-			<a href="/?page=modern" id="ms-menuItem5" class="ms-menuItem">Mode: Modern</a><br>
-			<a href="/?page=timer" id="ms-menuItem4" class="ms-menuItem">Mode: Timer</a><br>
-			<a href="/sysctl.php?cmd=reboot" id="ms-menuItem3" class="ms-menuItem">Reboot</a><br>
-			<a href="/sysctl.php?cmd=shutdown" id="ms-menuItem2" class="ms-menuItem">Power Off</a><br><!-- Non selectable from wheel -->
-			<a href="#" onClick="window.location.href=window.location.href" id="ms-menuItem1" class="ms-menuItem">Refresh</a><br><!-- Non selectable from wheel -->
-			<a href="#" onClick="$showMenu = 0;" id="ms-menuItem0" class="ms-menuItem">Cancel</a><br>
+			<?php
+				$msMenuItem = array_reverse($msMenuItem,TRUE);
+				foreach ($msMenuItem as $ID => $arr) {
+					echo "<a ";
+					if(!empty($arr['onClick'])){ echo "onClick='{$arr['onClick']}' ";}
+					echo"href='{$arr['href']}' id='ms-menuItem{$ID}' class='ms-menuItem'>{$arr['value']}</a><br>\n";
+				}
+			?>
 		</h2>
 	</div>
 	<div id="ms-touchControls">

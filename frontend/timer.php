@@ -4,6 +4,7 @@
 <!doctype html>
 <html>
 	<head>
+		<title>CanAx - Timer</title>
 		<script src='/js/socket.io.js'></script>
 		
 		<style>
