@@ -1,0 +1,63 @@
+#mode-switcher{
+	font-family: sans-serif;
+	position: absolute;
+	z-index: 9001;
+	left: 0px;
+	top: 0px;
+	visibility: hidden;
+	width: 800px;
+	height: 480px;
+	background-color: black;
+	color: white;
+}
+#ms-menuTitle{
+	font-size: 300%;
+	color: #FFFF00;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-left: 10px;
+}
+.ms-menuItem, .ms-menuItem:hover, .ms-menuItem:focus, .ms-menuItem:active, .ms-menuItem:visited{
+	color: white;
+	text-decoration: none;
+	transition: font-size 0.2s;
+}
+.ms-menuItem-large, .ms-menuItem:hover{
+	transition: font-size 0.2s;
+	font-size: 300%;
+}
+#ms-touchControls{
+	position: absolute;
+	top: 0px;
+	right: 20px;
+	text-align: right;
+}
+.ms-touchControl{
+	height: 100%;
+	width: 200px;
+	text-align: center;
+	padding: 15px;
+	background-color: grey;
+	color:white;
+	font-size: 300%;
+}
+#ms-menuInstructions{
+	position: absolute;
+	bottom: 0px;
+	right: 10px;
+	text-align: right;
+}
+#ms-overlay{
+	text-align: right;
+	position: absolute;
+	background-color: white;
+	top: 0px;
+	left: 0px;
+	width:100%;
+	z-index: 11;
+}
+.ms-overlay-button{
+	padding-right: 50px;
+	text-decoration: none;
+	color: #000;
+}

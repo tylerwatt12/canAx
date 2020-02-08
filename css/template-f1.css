@@ -1,0 +1,288 @@
+body {
+	font-family: sans-serif;
+}
+#main{
+	position: fixed;
+	left:0px;
+	top:0px;
+	width:800px;
+	height:480px;
+}
+
+a, a:link, a:visited, a:hover, a:active {
+	text-decoration: none;
+}
+/*					*/
+/*		THEMES		*/
+/*					*/
+.dayTheme{
+	background-color: #FFFFFF;
+	color: #000;
+	--rpm-color: black;
+	--tbody-color: black;
+	--accel-color: black;
+	--brake-color: black;
+	--gauge-label-color: white;
+	--gear-color: black;
+	--gear-label-color: black;
+	--speedo-color: black;
+	--speedo-label-color: black;
+	--boost-color: black;
+	--boost-label-color: black;
+	--temp-color: black;
+	--temp-label-color: black;
+	--debug-color: black;
+}
+.nightTheme{
+	background-color: #000000;
+	color: #FFF;
+	--rpm-color: orange;
+	--tbody-color: yellow;
+	--accel-color: #00FF00;
+	--brake-color: magenta;
+	--gauge-label-color: black;
+	--gear-color: yellow;
+	--gear-label-color: white;
+	--speedo-color: white;
+	--speedo-label-color: white;
+	--boost-color: #00FF00;
+	--boost-label-color: white;
+	--temp-color: orange;
+	--temp-label-color: white;
+	--debug-color: white;
+}
+.redlineTheme{
+	background-color: #FF0000;
+}
+.rotate{
+	transform: rotate(270deg);
+}
+/*					*/
+/*		CHARTS		*/
+/*					*/
+.vChart{
+	width: 50px;
+	height: 430px;
+	position:absolute;
+	bottom: 10px;
+}
+/*					*/
+/* 	GAUGE LABELS 	*/
+/*					*/
+.gaugeLabel{
+	color: var(--gauge-label-color);
+	position:absolute;
+}
+/*					*/
+/* 		RPM			*/
+/*					*/
+#rpm{
+	background-color: var(--rpm-color);
+	left: 10px;
+	transition: height 0.2s;
+}
+	#rpm-gauge-label{
+		left: 17px;
+		bottom: 10px;
+	}
+/*					*/
+/* 	Throtl Body		*/
+/*					*/
+#tbody{
+	background-color: var(--tbody-color);
+	left: 70px;
+	transition: height 0.2s;
+}
+	#tbody-label{
+		left: 83px;
+		bottom: 10px;
+	}
+/*					*/
+/* 		Accel Pedl	*/
+/*					*/
+#accel{
+	background-color: var(--accel-color);
+	right: 70px;
+	transition: height 0.2s;
+}
+	#accel-label{
+		right: 80px;
+		bottom: 10px;
+	}
+/*					*/
+/* 		Brake		*/
+/*					*/
+#brake{
+	background-color: var(--brake-color);
+	right: 10px;
+	transition: height 0.2s;
+}
+	#brake-label{
+		right: 20px;
+		bottom: 10px;
+	}
+
+/*					*/
+/* 	Speedometer		*/
+/*					*/
+#speedo-container{
+	position:absolute;
+	text-align: center;
+	left: 0px;
+	top: 30px;
+	width:  100%;
+}
+	#speedo{
+		color:  var(--speedo-color);
+		position: relative;
+		font-size: 840%;
+	}
+	#speedo-label{
+		color: var(--speedo-label-color);
+		position: relative;
+		top: -20px;
+	}
+/*					*/
+/* 	Gear Indic		*/
+/*					*/
+#gear-container{
+	position:absolute;
+	text-align: center;
+	left: 0px;
+	bottom: 80px;
+	width:  100%;
+}
+	#gear{
+		color:  var(--gear-color);
+		position:relative;
+		font-size: 840%;
+	}
+	#gear-label{
+		color: var(--gear-label-color);
+		position:relative;
+		top: -20px;
+	}
+/*					*/
+/* 	Oil Temp		*/
+/*					*/
+#oil-container{
+	position:absolute;
+	text-align: center;
+	right: 180px;
+	bottom: 20px;
+}
+	#oil{
+		color: var(--temp-color);
+		position:relative;
+		font-size: 440%;
+		
+	}
+	#oil-label{
+		color: var(--temp-label-color);
+		position:relative;
+	}
+/*					*/
+/* 	Coolant Temp	*/
+/*					*/
+#coolant-container{
+	position:absolute;
+	text-align: center;
+	left: 180px;
+	bottom: 20px;
+}
+	#coolant{
+		color: var(--temp-color);
+		position:relative;
+		font-size: 440%;
+		
+	}
+	#coolant-label{
+		color: var(--temp-label-color);
+		position: relative;
+	}
+/*					*/
+/* 	Boost Gauge		*/
+/*					*/
+#boost-container{
+	position:absolute;
+	text-align: center;
+	left: 0px;
+	bottom: 15px;
+	width: 100%;
+}
+	#boost{
+		color: var(--boost-color);
+		font-size: 300%;
+		bottom: 30px;
+	}
+	#boost-label{
+		color: var(--boost-label-color);
+		position:relative;
+		bottom: 0px;
+	}
+#debug-left-top-container{
+	position:absolute;
+	left: 140px;
+	bottom: 285px;
+	width: 170px;
+	height: 170px;
+}
+#debug-left-bottom-container{
+	position:absolute;
+	left: 140px;
+	bottom: 120px;
+	width: 170px;
+	height: 125px;
+}
+#debug-right-top-container{
+	position:absolute;
+	right: 140px;
+	bottom: 285px;
+	width: 170px;
+	height: 170px;
+}
+	.debug-text{
+		font-size: 200%;
+	}
+#engine-rev-protect{
+	position:absolute;
+	right: 185px;
+	bottom: 130px;
+	display: inline-block;
+	animation: blink 1s linear infinite;
+}
+/*             */
+/* Shift Light */
+/*             */
+#shift-light{
+	position:absolute;
+	left: 0px;
+	top: 200px;
+	display: inline-block;
+	width: 100%;
+	text-align: center;
+}
+/* Shift light dots */
+.dot {
+	display: inline-grid;
+	height: 25px;
+	width: 25px;
+	border-radius: 50%;
+}
+.green-dot{background-color: #00FF00;}
+.red-dot{background-color: #FF0000;}
+.blue-dot{background-color: #0000FF;}
+/* Shift light class activation via JS */
+.hide{visibility: hidden; display: inline;}
+.show{visibility: visible; display: inline;}
+
+.blinkShiftLight{animation: blink .2s linear infinite;}
+.blinkShiftLightOff{animation: none;}
+@keyframes blink {
+	0% { opacity: 1; }
+	50% { opacity: 1; }
+	50.01% { opacity: 0; }
+	100% { opacity: 0; }
+}
+
+
