@@ -12,24 +12,14 @@
 			body {
 				background-color: black;
 				font-family: sans-serif;
+				color: white;
+				margin: 0px;
+			}
+			body::-webkit-scrollbar {
+				display: none;
 			}
 			#main{
-				position: fixed;
-				left:0px;
-				top:0px;
-				width:800px;
-				height:480px;
-			}
-			#debug{
-				column-count: 2;
-				top: 20px;
-				position: fixed;
-			}
-			pre{
-				position: relative;
-				font-family: monospace;
-				color: white;
-				font-size: 150%;
+				margin:0px;
 			}
 		</style>
 		<!-- CONTROLLER MODULE CSS -->
@@ -44,27 +34,13 @@
 			var socket = io("<?php echo $socketIOURL; ?>");
 			socket.on('data', function (data) {
 				$rd = data;
-				$table = "<table border=1 width='100%'>";
-				for (let key in $rd.d) {
-					$table += "<tr><td width='150px'>"+key+"</td><td width='200px'>"+$rd.d[key]+"</td></tr>";
-				}
-				$table += "</table>";
-					document.querySelector('#one').innerHTML = $table;
-					if ($rd.crz.btnUp === "1") {
-						window.scrollBy(0, 100);
-					}
-					if ($rd.crz.btnDn === "1") {
-						window.scrollBy(0, -100);
-					}
 			});
 		</script>
 	</head>
 	<body>
 		<div id="main">
-			<div id="debug">
-				<pre><code id="one"></code></pre>
-			</div>
-			<?php include('modules/mode-switcher/mode-switcher.php'); ?>
+			
 		</div>
+		<?php include('modules/mode-switcher/mode-switcher.php'); ?>
 	</body>
 </html>

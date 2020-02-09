@@ -1,12 +1,14 @@
 body {
+	background-color: black;
 	font-family: sans-serif;
+	color: white;
+	margin: 0px;
+}
+body::-webkit-scrollbar {
+	display: none;
 }
 #main{
-	position: fixed;
-	left:0px;
-	top:0px;
-	width:800px;
-	height:480px;
+	margin:0px;
 }
 
 a, a:link, a:visited, a:hover, a:active {

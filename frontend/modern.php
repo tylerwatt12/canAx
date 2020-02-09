@@ -20,7 +20,7 @@
 				$rd = data;
 				$deg = ($rd.ngn.RPM)/6700*196;
 				document.getElementById('rpm-gauge').style.transform = "rotate("+ $deg +"deg)";
-				document.getElementById('speedo').textContent = $rd.spd.MPH;
+				document.getElementById('speedo').textContent = Math.round($rd.spd.MPH);
 			}); 
 
 		</script>
@@ -40,7 +40,7 @@
 				<!-- img id="coolant-temp" src="/img/bottom-left.svg">
 				<img id="oil-temp" src="/img/top-left.svg"-->
 			</div>
-			<?php include('modules/mode-switcher/mode-switcher.php'); ?>
 		</div>
+		<?php include('modules/mode-switcher/mode-switcher.php'); ?>
 	</body>
 </html>

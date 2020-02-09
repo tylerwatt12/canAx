@@ -153,9 +153,9 @@
 					<span class="dot blue-dot"></span>
 					<span class="dot blue-dot"></span>
 				</div>
-			</div>
-			<?php include('modules/mode-switcher/mode-switcher.php'); ?>
-			<?php include('modules/hvac-disp/hvac-disp.php'); ?>
+			</div>	
 		</div>
+		<?php include('modules/mode-switcher/mode-switcher.php'); ?>
+		<?php include('modules/hvac-disp/hvac-disp.php'); ?>
 	</body>
 </html>
