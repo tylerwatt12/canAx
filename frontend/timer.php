@@ -31,15 +31,15 @@
 			}
 			.category{
 				outline: 2px solid #00FF00;
-				padding-left: 20px;
-				padding-right: 20px;
+				padding-left: 5px;
+				padding-right: 5px;
 				padding-top: 20px;
 				
 				position: fixed;
 			}
 			.data{font-size: 300%;}
 
-			#cLapTime{top: 25px; left: 10px; width: 325px;}
+			#cLapTime{top: 25px; left: 10px; width: 325px; height: 55px; overflow: hidden;}
 			#cTripTime{top: 25px; right: 10px; width: 325px;}
 
 			#cOdo{top: 115px; right: 10px; width: 120px; text-align: right;}
@@ -48,12 +48,12 @@
 			#cZeroSixty{top:205px; left: 10px; width: 160px; text-align: right;}
 
 			#cSpeedo{top: 295px; left: 10px; width: 80px; text-align: right;}
-			#cTopSpeed{bottom: 10px; left: 200px; width: 80px; text-align: right;}
-			#cAvgSpeed{bottom: 10px; right: 270px; width: 80px; text-align: right;}
+			#cTopSpeed{bottom: 10px; left: 200px; width: 120px; text-align: right;}
+			#cAvgSpeed{bottom: 10px; right: 270px; width: 120px; text-align: right;}
 
 			#cRev{top: 295px; right: 10px; width: 140px; text-align: right;}
 			#cTopRev{bottom: 10px; right: 10px; width: 140px; text-align: right;}
-			#info{bottom: 10px; left: 10px; padding-bottom: 20px; font-variant: small-caps; background-color: #222222;}
+			#info{bottom: 10px; left: 10px; padding-bottom: 5px; padding-top: 5px; font-variant: small-caps; background-color: #222222; width: 150px; font-size: 150%; text-align: center;}
 			#oemlogo{position: fixed; bottom: 100px; left: 200px; width: 300px;}
 		</style>
 		<!-- CONTROLLER MODULE CSS -->
@@ -74,48 +74,70 @@
 			var lapTimerStart = Date.now();
 			var lapOdoStart = "";
 
+			var freeze = 0;
+
 			var socket = io("<?php echo $socketIOURL; ?>");
 			
 			socket.on('data', function (data) {
 				$rd = data;
-				if (lapOdoStart == "") {
-					lapOdoStart = $rd.trip.odo;
-				}
+				if (freeze === 0 && typeof $rd !== 'undefined') {
+					
+					if ($rd.crz.btnUp == "1"){freezeData();}
+					if ($rd.crz.btnDn == "1"){clearMeters();}
 
-				$speed = Math.round($rd.spd.MPH);
-				/* ZERO TO SIXTY TIMER */
-				if ($speed === 0) {
-					zeroSixtyTimerStart = Date.now(); //set timer
-					zeroSixtyTimerReady = 1; //timer is ready
+					if (lapOdoStart == "") {
+						lapOdoStart = $rd.trip.odo;
+					}
+					
+					/* ZERO TO SIXTY TIMER */
+					$speed = Math.round($rd.spd.MPH);
+					if ($speed === 0) {
+						zeroSixtyTimerStart = Date.now(); //set timer
+						zeroSixtyTimerReady = 1; //timer is ready
 
-				}
-				if ($speed < 60 && zeroSixtyTimerReady === 1) {
-					document.getElementById('zeroSixtyTime').textContent = (Date.now()-zeroSixtyTimerStart)/1000;
-				}else if($speed >= 60){
-					zeroSixtyTimerReady = 0;  //timer is not ready until speed is 0 again
-				}
+					}
+					if ($speed < 60 && zeroSixtyTimerReady === 1) {
+						document.getElementById('zeroSixtyTime').textContent = (Date.now()-zeroSixtyTimerStart)/1000;
+					}else if($speed >= 60){
+						zeroSixtyTimerReady = 0;  //timer is not ready until speed is 0 again
+					}
+					/* END ZERO TO SIXTY TIMER */
 
-				$lapTime = (Date.now()-lapTimerStart)/1000;
-				HHMMSS
-				document.getElementById('lapTime').textContent = HHMMSS($lapTime)+" "+$lapTime.toString().split('.')[1];
-				document.getElementById('lapOdo').textContent = roundPrec(($rd.trip.odo-lapOdoStart),3);
+					$lapTime = (Date.now()-lapTimerStart)/1000;
+					document.getElementById('lapTime').textContent = HHMMSS($lapTime)+" "+$lapTime.toString().split('.')[1];
+					document.getElementById('lapOdo').textContent = roundPrec(($rd.trip.odo-lapOdoStart),3);
 
-				document.getElementById('speedo').textContent = $speed;
-				if (topSpeed < $speed) {
-					topSpeed = $speed;
-					document.getElementById('top-speed').textContent = topSpeed;
-				}
+					document.getElementById('speedo').textContent = $speed;
+					if (topSpeed < $speed) {
+						topSpeed = $speed;
+						document.getElementById('top-speed').textContent = topSpeed;
+					}
 
-				$rev = $rd.ngn.RPM;
-				document.getElementById('rev-rpm').textContent = $rev;
-				if (topRev < $rev) {
-					topRev = $rev;
-					document.getElementById('top-rev').textContent = topRev;
-				}
-				document.getElementById('avg-speed').textContent = Math.round($rd.spd.avgMPH);
-				document.getElementById('odo').textContent = roundPrec($rd.trip.scrTrp,3);
-				document.getElementById('trip-time').textContent = $rd.trip.timeDisp;
+					$rev = $rd.ngn.RPM;
+					document.getElementById('rev-rpm').textContent = $rev;
+					if (topRev < $rev) {
+						topRev = $rev;
+						document.getElementById('top-rev').textContent = topRev;
+					}
+					document.getElementById('avg-speed').textContent = Math.round($rd.spd.avgMPH);
+					document.getElementById('odo').textContent = roundPrec($rd.trip.scrTrp,3);
+					document.getElementById('trip-time').textContent = $rd.trip.timeDisp;
+					}	
 			});
+
+
+			function freezeData(){
+				if (freeze === 0) {
+					freeze = 1;
+				}else if (freeze === 1){
+					clearMeters();
+					freeze = 0;
+				}
+			}
+			function clearMeters(){
+				lapTimerStart = Date.now();
+				lapOdoStart = $rd.trip.odo;
+			}
 		</script>
 	</head>
 	<body>
@@ -166,5 +188,8 @@
 			<img id="oemlogo" src="/img/oemlogo-white.svg">
 		</div>
 		<?php include('modules/mode-switcher/mode-switcher.php'); ?>
+		<script type="text/javascript">
+			document.getElementById('ms-titlebar').innerHTML = "<a href='#' class='ms-overlay-button' onClick=\"clearMeters();\">LAP</a><a href='#' class='ms-overlay-button' onClick=\"freezeData();\">FREEZE</a>";
+		</script>
 	</body>
 </html>

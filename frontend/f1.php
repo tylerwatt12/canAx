@@ -60,12 +60,6 @@
 					document.getElementById('oil').textContent = Math.round($rd.tmp.oil);
 					document.getElementById('mpg').textContent = Math.round($rd.fuel.MPG);
 					document.getElementById('mga').textContent = roundPrec($rd.fuel.avgMPG,1);
-					document.getElementById('gph').textContent = roundPrec($rd.fuel.GPH,2);
-
-					document.getElementById('odo').textContent = roundPrec($rd.trip.odo,1);
-					document.getElementById('trip').textContent = roundPrec($rd.trip.scrTrp,1);
-					document.getElementById('trtm').textContent = $rd.trip.timeDisp;
-					document.getElementById('sctm').textContent = HHMMSS($rd.trip.scrTime/1000);
 
 					document.getElementById('ms-titlebar').textContent = $rd.info.profile+" "+$rd.info.vin;
 					
@@ -115,21 +109,12 @@
 			</div>
 				
 			<div id="debug-left-top-container" class="debug-text">
-				Odo:<br>
-				<b id="odo"></b><br>
-				Lap:<br>
-				<b id="trip"></b>
 			</div>
 			<div id="debug-right-top-container" class="debug-text">
-				Trip:<br>
-				<b id="trtm"></b><br>
-				Lap:<br>
-				<b id="sctm"></b>
 			</div>
 			<div id="debug-left-bottom-container" class="debug-text">
 				MPG: <b id="mpg">0</b><br>
-				MGA: <b id="mga">0</b><br>
-				GPH: <b id="gph">0</b>
+				MGA: <b id="mga">0</b>
 			</div>
 			<div id="shift-light">
 				<div id="shift-1">
