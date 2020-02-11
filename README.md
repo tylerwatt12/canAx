@@ -40,7 +40,9 @@ End users can interact with the screen without taking their hand off the steerin
 
 # Premade Templates
 ## F1 Screen
+
 Mimics an F1 steering wheel.
+
 Other Features:
 - Shift light
 - Cold engine overrev protection
@@ -48,18 +50,26 @@ Other Features:
 
 ![F1 Screen](/screenshots/f1.png)
 ## Main Menu
-Main menu navagable via cruise control +/- buttons and cruise cancel. Only works when cruise crontrol is disabled.
+- Main menu navagable via cruise control +/- buttons and cruise cancel. Only works when cruise crontrol is disabled.
+
+Menu Options:
+
+- Emulate/Live: Switches between a candump log file and live can data for easy debugging.
+- Record: Starts a candump session to log file. Allows for quick logging during a drive
+- Flip: Flips raspberry pi screen so it can be put on a dashboard as a HUD
+- Mode: Changes between page screens
+- Reboot, Power Off, Refresh, Cancel - Self explanatory
 
 ![Menu Screen](/screenshots/menu.png)
 ## Debug Screen
-Shows object tree and every variable available, navagable with Cruise +/- buttons on wheel
+- Shows object tree and every variable available, navagable with Cruise +/- buttons on wheel
 
 ![Debug Screen](/screenshots/debug.png)
 ## Modern Screen
-Modern speedometer, basic
+- Modern speedometer, basic
 
 ![Modern Screen](/screenshots/modern.png)
 ## Timer Screen
-Timer screen 
-+/- cruise buttons reset and freeze lap data
+- +/- cruise buttons reset and freeze lap data
+
 ![Timer Screen](/screenshots/timer.png)
