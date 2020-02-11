@@ -1,5 +1,7 @@
 # canAx
-UI for candump
+
+Turn a Raspberry Pi into a car speedometer, lap timer, heads up display.
+
 Requires:
 - Raspberry Pi with a hardware CAN interface (I used a PiCAN2)
 - Raspbian with:
