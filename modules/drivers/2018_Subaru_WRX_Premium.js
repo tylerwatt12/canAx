@@ -43,7 +43,7 @@ $rd = { wpr: '0',
   fuel: { avgMPG: 0, avgGPH: 0, MPG: 0, GPH: 0},
   TPMS: { FL: 0, FR: 0, RL: 0, RR: 0 },
   info: { vin: 'LOADING VIN      ', my: 2018, make: 'SUBARU', model: 'WRX', trim: 'PREMIUM', loc: 'USDM', profile : '2018_Subaru_WRX_Premium.js'},
-  trip: { odo: 0, timeDisp: '0h 0\'', timeSec: 0, scrTime: Date.now(), scrTimeStart: Date.now(), scrOdo: 0, scrTrp: 0} };
+  trip: { odo: 0, timeDisp: '0h 0\'', timeSec: 0, scrTime: Date.now(), startTime: Date.now(), startOdo: 0, scrTrp: 0} };
 
 $rd.d = { };
 $rtnTimerArray = new Object();
@@ -305,14 +305,14 @@ exports.addMessage = function($ch,$dt) {
     case "660":
       $rd.trip.timeSec = dataDecode3($dt,"d",48,16,"b",0,0.1,0);
       $rd.trip.timeDisp = HHMMSS($rd.trip.timeSec);
-      $rd.trip.scrTime = Date.now()-$rd.trip.scrTimeStart; // time in ms since script load
+      $rd.trip.scrTime = Date.now()-$rd.trip.startTime; // time in ms since script load
       break;
     case "6D1":
       $rd.trip.odo = dataDecode3($dt,"d",40,24,"l",0,0.1,0); // current full odometer
-      if ($rd.trip.scrOdo === 0) { // if script start odometer not set, set it to current
-        $rd.trip.scrOdo = $rd.trip.odo;
+      if ($rd.trip.startOdo === 0) { // if script start odometer not set, set it to current
+        $rd.trip.startOdo = $rd.trip.odo;
       }
-      $rd.trip.scrTrp = ($rd.trip.odo-$rd.trip.scrOdo); //miles traveled since nodejs start
+      $rd.trip.scrTrp = ($rd.trip.odo-$rd.trip.startOdo); //miles traveled since nodejs start
       $rd.d.D6D1_2 = dataDecode3($dt,"d",8,8,"b",0,1,0); // troubleshoot this
       break;
     case "6FC":
