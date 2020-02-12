@@ -96,9 +96,13 @@
 							zeroSixtyTimerReady = 1; //timer is ready
 
 						}
-						if ($speed < 60 && zeroSixtyTimerReady === 1) {
-							document.getElementById('zeroSixtyTime').textContent = (Date.now()-zeroSixtyTimerStart)/1000;
-						}else if($speed >= 60){
+						if ($speed < 60 && zeroSixtyTimerReady === 1) { // if speed is between 0 and 59
+							$zeroSixtyTime = (Date.now()-zeroSixtyTimerStart)/1000;
+							if ($zeroSixtyTime < 99) { // Cap zero sixty times to 99 seconds then stop.
+								document.getElementById('zeroSixtyTime').textContent = $zeroSixtyTime; 
+							}
+
+						}else if($speed >= 60){ // if speed is over 60, stop timer
 							zeroSixtyTimerReady = 0;  //timer is not ready until speed is 0 again
 						}
 						/* END ZERO TO SIXTY TIMER */
