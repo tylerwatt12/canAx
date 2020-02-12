@@ -5,8 +5,8 @@
 <html>
 	<head>
 		<title>CanAx - Timer</title>
-		<script src='/js/socket.io.js'></script>
-		<script src='/modules/conversions/conversions.js'></script>
+		<script src='js/socket.io.js'></script>
+		<script src='modules/conversions/conversions.js'></script>
 		<style>
 			
 			body {
@@ -57,7 +57,7 @@
 			#oemlogo{position: fixed; bottom: 100px; left: 200px; width: 300px;}
 		</style>
 		<!-- CONTROLLER MODULE CSS -->
-			<link rel="stylesheet" type="text/css" href="/modules/mode-switcher/mode-switcher.css">
+			<link rel="stylesheet" type="text/css" href="modules/mode-switcher/mode-switcher.css">
 		<!-- END CONTROLLER MODULE CSS -->
 
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -187,7 +187,7 @@
 			<div id="info" class="category">
 				Up - Freeze<br>Down - Lap
 			</div>
-			<img id="oemlogo" src="/img/oemlogo-white.svg">
+			<img id="oemlogo" src="img/oemlogo-white.svg">
 		</div>
 		<?php include('modules/mode-switcher/mode-switcher.php'); ?>
 		<script type="text/javascript">
