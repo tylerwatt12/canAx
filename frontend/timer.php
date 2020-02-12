@@ -80,48 +80,50 @@
 			
 			socket.on('data', function (data) {
 				$rd = data;
-				if (freeze === 0 && typeof $rd !== 'undefined') {
+				if (typeof $rd !== 'undefined') {
 					
 					if ($rd.crz.btnUp == "1"){freezeData();}
 					if ($rd.crz.btnDn == "1"){clearMeters();}
+					if (freeze === 0){
+						if (lapOdoStart == "") {
+							lapOdoStart = $rd.trip.odo;
+						}
+						
+						/* ZERO TO SIXTY TIMER */
+						$speed = Math.round($rd.spd.MPH);
+						if ($speed === 0) {
+							zeroSixtyTimerStart = Date.now(); //set timer
+							zeroSixtyTimerReady = 1; //timer is ready
 
-					if (lapOdoStart == "") {
-						lapOdoStart = $rd.trip.odo;
+						}
+						if ($speed < 60 && zeroSixtyTimerReady === 1) {
+							document.getElementById('zeroSixtyTime').textContent = (Date.now()-zeroSixtyTimerStart)/1000;
+						}else if($speed >= 60){
+							zeroSixtyTimerReady = 0;  //timer is not ready until speed is 0 again
+						}
+						/* END ZERO TO SIXTY TIMER */
+
+						$lapTime = (Date.now()-lapTimerStart)/1000;
+						document.getElementById('lapTime').textContent = HHMMSS($lapTime)+" "+$lapTime.toString().split('.')[1];
+						document.getElementById('lapOdo').textContent = roundPrec(($rd.trip.odo-lapOdoStart),3);
+
+						document.getElementById('speedo').textContent = $speed;
+						if (topSpeed < $speed) {
+							topSpeed = $speed;
+							document.getElementById('top-speed').textContent = topSpeed;
+						}
+
+						$rev = $rd.ngn.RPM;
+						document.getElementById('rev-rpm').textContent = $rev;
+						if (topRev < $rev) {
+							topRev = $rev;
+							document.getElementById('top-rev').textContent = topRev;
+						}
+						document.getElementById('avg-speed').textContent = Math.round($rd.spd.avgMPH);
+						document.getElementById('odo').textContent = roundPrec($rd.trip.scrTrp,3);
+						document.getElementById('trip-time').textContent = $rd.trip.timeDisp;
 					}
 					
-					/* ZERO TO SIXTY TIMER */
-					$speed = Math.round($rd.spd.MPH);
-					if ($speed === 0) {
-						zeroSixtyTimerStart = Date.now(); //set timer
-						zeroSixtyTimerReady = 1; //timer is ready
-
-					}
-					if ($speed < 60 && zeroSixtyTimerReady === 1) {
-						document.getElementById('zeroSixtyTime').textContent = (Date.now()-zeroSixtyTimerStart)/1000;
-					}else if($speed >= 60){
-						zeroSixtyTimerReady = 0;  //timer is not ready until speed is 0 again
-					}
-					/* END ZERO TO SIXTY TIMER */
-
-					$lapTime = (Date.now()-lapTimerStart)/1000;
-					document.getElementById('lapTime').textContent = HHMMSS($lapTime)+" "+$lapTime.toString().split('.')[1];
-					document.getElementById('lapOdo').textContent = roundPrec(($rd.trip.odo-lapOdoStart),3);
-
-					document.getElementById('speedo').textContent = $speed;
-					if (topSpeed < $speed) {
-						topSpeed = $speed;
-						document.getElementById('top-speed').textContent = topSpeed;
-					}
-
-					$rev = $rd.ngn.RPM;
-					document.getElementById('rev-rpm').textContent = $rev;
-					if (topRev < $rev) {
-						topRev = $rev;
-						document.getElementById('top-rev').textContent = topRev;
-					}
-					document.getElementById('avg-speed').textContent = Math.round($rd.spd.avgMPH);
-					document.getElementById('odo').textContent = roundPrec($rd.trip.scrTrp,3);
-					document.getElementById('trip-time').textContent = $rd.trip.timeDisp;
 					}	
 			});
 
