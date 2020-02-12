@@ -5,10 +5,10 @@
 <html>
 	<head>
 		<title>CanAx - Modern</title>
-		<script src='/js/socket.io.js'></script>
-		<link rel="stylesheet" type="text/css" href="/css/template-modern.css">
+		<script src='js/socket.io.js'></script>
+		<link rel="stylesheet" type="text/css" href="css/template-modern.css">
 		<!-- CONTROLLER MODULE CSS -->
-			<link rel="stylesheet" type="text/css" href="/modules/mode-switcher/mode-switcher.css">
+			<link rel="stylesheet" type="text/css" href="modules/mode-switcher/mode-switcher.css">
 		<!-- END CONTROLLER MODULE CSS -->
 		<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 		<meta http-equiv="Pragma" content="no-cache">
@@ -28,9 +28,9 @@
 	<body>
 		<div id="main">
 			<!-- start needle at -112.5deg, end at 90deg total travel of ~200 -->
-			<img id="piivate-logo" src="/img/logo-1.png">
+			<img id="piivate-logo" src="img/logo-1.png">
 			<div id="rpm-container">
-					<img id="rpm-gauge" src="/img/needle.svg">
+					<img id="rpm-gauge" src="img/needle.svg">
 				</div>
 			<div id="gauge-container">
 				

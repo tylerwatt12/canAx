@@ -5,7 +5,7 @@
 <html>
 	<head>
 		<title>CanAx - Debug</title>
-		<script src='/js/socket.io.js'></script>
+		<script src='js/socket.io.js'></script>
 		
 		<style>
 			body {
@@ -31,7 +31,7 @@
 			}
 		</style>
 		<!-- CONTROLLER MODULE CSS -->
-			<link rel="stylesheet" type="text/css" href="/modules/mode-switcher/mode-switcher.css">
+			<link rel="stylesheet" type="text/css" href="modules/mode-switcher/mode-switcher.css">
 		<!-- END CONTROLLER MODULE CSS -->
 
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -114,6 +114,6 @@
 			document.getElementById('ms-titlebar').innerHTML = "<a href='#' class='ms-overlay-button' onClick=\"toggleAll(\'SHOW\');\">SHOW ALL</a><a href='#' class='ms-overlay-button' onClick=\"toggleAll(\'HIDE\');\">HIDE ALL</a>";
 		</script>
 		<!-- LOAD PAGE SCROLLER MODULE -->
-		<script src='/modules/page-scroller/page-scroller.js'></script>
+		<script src='modules/page-scroller/page-scroller.js'></script>
 	</body>
 </html>
