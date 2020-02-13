@@ -103,7 +103,7 @@
 							zeroSixtyTimerReady = 0;  //timer is not ready until speed is 0 again
 						}
 						/* END ZERO TO SIXTY TIMER */
-
+						console.log(debounce(50));
 						$lapTime = (Date.now()-lapTimerStart)/1000;
 						document.getElementById('lapTime').textContent = HHMMSS($lapTime)+" "+$lapTime.toString().split('.')[1];
 						document.getElementById('lapOdo').textContent = roundPrec(($rd.trip.odo-lapOdoStart),3);
@@ -140,6 +140,19 @@
 			function clearMeters(){
 				lapTimerStart = Date.now();
 				lapOdoStart = $rd.trip.odo;
+			}
+			function debounce($length){ //length in ms
+				if ($start == "undefined") {
+					$start = Date.now()
+					return 2;
+				}else{
+					$currLength = Date.now()-$start;
+					if ($length < $currLength) {
+						return 1;
+					}else{
+						return 0;
+					}
+				}
 			}
 		</script>
 	</head>

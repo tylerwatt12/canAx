@@ -3,7 +3,7 @@ $msCurrentSetting = 0;
 $page = 0;
 $buttonAction = {};
 
-document.body.onkeydown = function(e){
+document.body.onkeydown = function(e){ //keyboard function
     switch(e.keyCode){
     	case 38:
     		buttonAction("up");
@@ -17,9 +17,6 @@ document.body.onkeydown = function(e){
 			}else if($showMenu === 1){
 				buttonAction("go");
 			}
-    	break;
-    	default:
-    		console.log(e.keyCode);
     	break;
     }
 };
