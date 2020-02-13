@@ -2,6 +2,28 @@ var $showMenu =  0;
 $msCurrentSetting = 0;
 $page = 0;
 $buttonAction = {};
+
+document.body.onkeydown = function(e){
+    switch(e.keyCode){
+    	case 38:
+    		buttonAction("up");
+    	break;
+    	case 40:
+    		buttonAction("down");
+    	break;
+    	case 77:
+	    	if ($showMenu === 0){
+				buttonAction("menu");
+			}else if($showMenu === 1){
+				buttonAction("go");
+			}
+    	break;
+    	default:
+    		console.log(e.keyCode);
+    	break;
+    }
+};
+
 function modeSwitcher () {
 	setTimeout(function () {
 		if (typeof $rd !== 'undefined'){ // wait for connection to socket.io server

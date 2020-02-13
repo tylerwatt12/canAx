@@ -1,7 +1,4 @@
-<?php
-	include('main.php');
-?>
-<!doctype html>
+<?php include('main.php'); ?><!doctype html>
 <html>
 	<head>
 		<title>CanAx - Debug</title>

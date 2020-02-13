@@ -54,7 +54,7 @@
 			}elseif($_GET['cmd'] === "mode"){
 				$src = parse_url($_SERVER['HTTP_REFERER']);
 				$redirectTimer = 1;
-				$redirect = "http://".$src["host"]."/?page="; 
+				$redirect = "?page="; 
 				switch ($src["query"]){
 					case 'page=f1':
 						$redirect .= "modern";
