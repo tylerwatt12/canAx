@@ -1,2 +1,16 @@
 
 *.log
+.DS_Store
+css/.DS_Store
+frontend/.DS_Store
+logs/.DS_Store
+modules/.DS_Store
+modules/drivers/.DS_Store
+raspberry-pi4/.DS_Store
+raspberry-pi4/etc/.DS_Store
+raspberry-pi4/home/.DS_Store
+raspberry-pi4/home/pi/.config/.DS_Store
+raspberry-pi4/home/pi/.config/lxsession/.DS_Store
+raspberry-pi4/home/pi/.config/lxsession/LXDE/.DS_Store
+raspberry-pi4/home/pi/.DS_Store
+screenshots/.DS_Store
