@@ -1,7 +1,11 @@
-		<?php
+<?php
 			# Relies on visudo edits
 			# www-data ALL = NOPASSWD: /sbin/shutdown, /sbin/reboot, /bin/sed, /usr/bin/candump, /bin/kill
 			$redirect = NULL;
+			if(@$_GET['cmd'] === "cputemp"){
+				echo exec("cat /sys/class/thermal/thermal_zone0/temp")/1000;
+				exit();
+			}
 			if(@$_GET['cmd'] === "shutdown"){
 
 				$msg = "Shutting down system";
@@ -54,7 +58,7 @@
 			}elseif($_GET['cmd'] === "mode"){
 				$src = parse_url($_SERVER['HTTP_REFERER']);
 				$redirectTimer = 1;
-				$redirect = "?page="; 
+				$redirect = "http://".$src["host"]."/?page="; 
 				switch ($src["query"]){
 					case 'page=f1':
 						$redirect .= "modern";

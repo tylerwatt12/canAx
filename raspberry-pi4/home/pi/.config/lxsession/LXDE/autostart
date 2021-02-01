@@ -1,0 +1,6 @@
+@lxpanel --profile LXDE-pi
+@xset s off
+@xset s -dpms
+@xset s noblank
+@xset s noexpose
+@/usr/bin/chromium-browser --incognito --kiosk --app=http://127.0.0.1

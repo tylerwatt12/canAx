@@ -1,0 +1,39 @@
+#gaugePage{
+	margin-left: 10px;
+	margin-right: 10px;
+}
+.gaugeCategory{
+	height: 58px;
+	
+}
+.gaugeLabel{
+	font-family: 'Objet';
+	text-align: left;
+	font-size: 20px;
+}
+.gaugeOutline{
+	border-style: solid;
+	border-width: 1px;
+	position: relative;
+	top: -30px;
+	width: 100%;
+	height: 30px;
+}
+.gaugeData{
+	text-align: center;
+	font-family: 'Objet';
+	font-size: 24px;
+	
+}
+.gaugeProgress{
+	background-color: #2255FF;
+	width: 50%;
+	height: 30px;
+}
+.gaugeUnit{
+	position: absolute;
+	right: 0px;
+	font-family: 'Objet';
+	text-align: right;
+	font-size: 12px;
+}

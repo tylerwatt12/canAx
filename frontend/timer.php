@@ -1,9 +1,12 @@
-<?php include('main.php'); ?><!doctype html>
+<?php
+	include('main.php');
+?>
+<!doctype html>
 <html>
 	<head>
 		<title>CanAx - Timer</title>
-		<script src='js/socket.io.js'></script>
-		<script src='modules/conversions/conversions.js'></script>
+		<script src='/js/socket.io.js'></script>
+		<script src='/modules/conversions/conversions.js'></script>
 		<style>
 			
 			body {
@@ -54,7 +57,7 @@
 			#oemlogo{position: fixed; bottom: 100px; left: 200px; width: 300px;}
 		</style>
 		<!-- CONTROLLER MODULE CSS -->
-			<link rel="stylesheet" type="text/css" href="modules/mode-switcher/mode-switcher.css">
+			<link rel="stylesheet" type="text/css" href="/modules/mode-switcher/mode-switcher.css">
 		<!-- END CONTROLLER MODULE CSS -->
 
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -93,17 +96,13 @@
 							zeroSixtyTimerReady = 1; //timer is ready
 
 						}
-						if ($speed < 60 && zeroSixtyTimerReady === 1) { // if speed is between 0 and 59
-							$zeroSixtyTime = (Date.now()-zeroSixtyTimerStart)/1000;
-							if ($zeroSixtyTime < 99) { // Cap zero sixty times to 99 seconds then stop.
-								document.getElementById('zeroSixtyTime').textContent = $zeroSixtyTime; 
-							}
-
-						}else if($speed >= 60){ // if speed is over 60, stop timer
+						if ($speed < 60 && zeroSixtyTimerReady === 1) {
+							document.getElementById('zeroSixtyTime').textContent = (Date.now()-zeroSixtyTimerStart)/1000;
+						}else if($speed >= 60){
 							zeroSixtyTimerReady = 0;  //timer is not ready until speed is 0 again
 						}
 						/* END ZERO TO SIXTY TIMER */
-						console.log(debounce(50));
+
 						$lapTime = (Date.now()-lapTimerStart)/1000;
 						document.getElementById('lapTime').textContent = HHMMSS($lapTime)+" "+$lapTime.toString().split('.')[1];
 						document.getElementById('lapOdo').textContent = roundPrec(($rd.trip.odo-lapOdoStart),3);
@@ -140,19 +139,6 @@
 			function clearMeters(){
 				lapTimerStart = Date.now();
 				lapOdoStart = $rd.trip.odo;
-			}
-			function debounce($length){ //length in ms
-				if ($start == "undefined") {
-					$start = Date.now()
-					return 2;
-				}else{
-					$currLength = Date.now()-$start;
-					if ($length < $currLength) {
-						return 1;
-					}else{
-						return 0;
-					}
-				}
 			}
 		</script>
 	</head>
@@ -201,7 +187,7 @@
 			<div id="info" class="category">
 				Up - Freeze<br>Down - Lap
 			</div>
-			<img id="oemlogo" src="img/oemlogo-white.svg">
+			<img id="oemlogo" src="/img/oemlogo-white.svg">
 		</div>
 		<?php include('modules/mode-switcher/mode-switcher.php'); ?>
 		<script type="text/javascript">

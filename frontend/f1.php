@@ -1,15 +1,18 @@
-<?php include('main.php'); ?><!doctype html>
+<?php
+	include('main.php');
+?>
+<!doctype html>
 <html>
 	<head>	
 		<title>CanAx - F1</title>
-		<script src='js/socket.io.js'></script>
-		<link rel="stylesheet" type="text/css" href="css/template-f1.css">
+		<script src='/js/socket.io.js'></script>
+		<link rel="stylesheet" type="text/css" href="/css/template-f1.css">
 		<!-- CONVERSIONS MODULE JS -->
-			<script src="modules/conversions/conversions.js"></script>
+			<script src="/modules/conversions/conversions.js"></script>
 		<!-- CONTROLLER MODULE CSS -->
-			<link rel="stylesheet" type="text/css" href="modules/mode-switcher/mode-switcher.css">
+			<link rel="stylesheet" type="text/css" href="/modules/mode-switcher/mode-switcher.css">
 		<!-- HVAC MODULE CSS -->
-			<link rel="stylesheet" type="text/css" href="modules/hvac-disp/hvac-disp.css">
+			<link rel="stylesheet" type="text/css" href="/modules/hvac-disp/hvac-disp.css">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 		<meta http-equiv="Pragma" content="no-cache">
@@ -67,7 +70,7 @@
 	</head>
 	<body>
 		<div id="main">
-			<div id="engine-rev-protect"><img src="img/cold-engine.svg" width="80px"></div>
+			<div id="engine-rev-protect"><img src="/img/cold-engine.svg" width="80px"></div>
 			<div id="rpm" class="vChart"></div>
 			<div id="rpm-gauge-label" class="gaugeLabel">RPM</div>
 

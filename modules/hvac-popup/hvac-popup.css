@@ -1,0 +1,60 @@
+#hvacClimateControl{
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.hvacSectionFull{
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.hvacSectionHalf{
+	text-align: center;
+	height: 100%;
+	width: 45%;
+	padding-left: 5px;
+	padding-right: 5px;
+	display: inline-block;
+}
+.hvacSectionVHalf{
+	height: 48%;
+	display: block;
+}
+
+.hvacClimateText{
+	font-size: 56px;
+	font-family: 'Objet';
+}
+/*
+	CSS Image Definitions
+*/
+.hvac-rc-rc{
+	content:url("/img/modern/rc-rc.svg");
+}
+.hvac-rc-fa{
+	content:url("/img/modern/rc-fa.svg");
+}
+
+.hvac-h-auto{
+	content:url("/img/modern/h-auto.svg");
+}
+.hvac-h-fullauto{
+	content:url("/img/modern/h-fullauto.svg");
+}
+.hvac-h-systemoff{
+	content:url("/img/modern/h-systemoff.svg");
+}
+
+.hvac-v-b{
+	content:url("/img/modern/v-b.svg");
+}
+.hvac-v-f{
+	content:url("/img/modern/v-f.svg");
+}
+.hvac-v-h{
+	content:url("/img/modern/v-h.svg");
+}
+.hvac-v-w{
+	content:url("/img/modern/v-w.svg");
+}
+.hvac-v-wf{
+	content:url("/img/modern/v-wf.svg");
+}

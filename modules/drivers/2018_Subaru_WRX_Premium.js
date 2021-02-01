@@ -11,6 +11,8 @@ $rd = { wpr: '0',
   trns: { gear: 0, isRvse: '0' },
   esc:
    { FullAct: '0', VDCAct: '0', ESCAct: '0', TCSOff: '0', isBrk: '0' },
+  sfty:
+   { StbltDrvr: '0' },
   pdl: { accel: 0, brkPrs: 0, PBRK: '0' },
   lok:
    { Lock: '0', UnlockDriver: '0', UnlockAll: '0', BCMAwake: '0' },
@@ -30,7 +32,7 @@ $rd = { wpr: '0',
   hvac:
    { system: 'off',
      dispAct: '0' },
-  tmp: { oil: 0, clnt: 0 },
+  tmp: { oil: 0, clnt: 0 , amb: 0},
   crz: { btnUp: '0', btnDn: '0', btnCncl: '0', active: '0' },
   spd:
    { MPH: 0,
@@ -54,8 +56,8 @@ exports.addMessage = function($ch,$dt) {
     case "002":
       // steering angle
       $rd.stng.pcnt = dataDecode3($dt,"sig",0,16,"b",0,0.000205,0,-1);
-      $rd.stng.whl = Math.round($rd.stng.percent*485);
-      $rd.stng.tir = Math.round($rd.stng.percent * (180 * 2.7) / 14.4);
+      $rd.stng.whl = Math.round($rd.stng.pcnt*485);
+      $rd.stng.tir = Math.round($rd.stng.pcnt * (180 * 2.7) / 14.4);
       break;
     case "0D1":
       $rd.pdl.brkPrs = dataDecode3($dt,"d",16,8,"b",0,1.20481927711,0);
@@ -207,11 +209,11 @@ exports.addMessage = function($ch,$dt) {
       break;
     case "282":
       $rd.d.TempFuel0 = dataDecode3($dt,"d",0,8,"b",0,1,-48); // temp, or fuel? // FIX THIS
-      $rd.d.tempAmbient = dataDecode3($dt,"d",24,8,"b",0,1,-48); // temp, or fuel? Used for AC AUTO, not triple display at top
+      $rd.tmp.amb = dataDecode3($dt,"d",24,8,"b",0,1,-48); // temp, or fuel? Used for AC AUTO, not triple display at top
       $rd.d.tempInlet = dataDecode3($dt,"d",32,8,"b",0,1,-48); // temp, or fuel?
 
       $dt = dataDecode3($dt,"b");
-      $rd.d.StbltDrvr = $dt.substr(47,1);
+      $rd.sfty.StbltDrvr = $dt.substr(47,1);
       $rd.tSnl.Left = $dt.substr(43,1);
       $rd.tSnl.Right = $dt.substr(42,1);
       break;

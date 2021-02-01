@@ -1,0 +1,38 @@
+#tempPage{
+	margin: 14px;
+}
+.tempCategory{
+	
+	
+}
+.tempLabel{
+	font-family: 'Objet';
+	text-align: left;
+	font-size: 24px;
+}
+.tempGaugeOutline{
+	border-style: solid;
+	border-width: 1px;
+	position: relative;
+	top: -30px;
+	width: 100%;
+	height: 30px;
+}
+.tempData{
+	text-align: center;
+	font-family: 'Objet';
+	font-size: 24px;
+	
+}
+.tempGaugeProgress{
+	background-color: #2255FF;
+	width: 50%;
+	height: 30px;
+}
+.tempUnit{
+	position: absolute;
+	right: 0px;
+	font-family: 'Objet';
+	text-align: right;
+	font-size: 12px;
+}

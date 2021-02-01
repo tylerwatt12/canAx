@@ -1,0 +1,29 @@
+#!/bin/sh -e
+#
+# rc.local
+#
+# This script is executed at the end of each multiuser runlevel.
+# Make sure that the script will "exit 0" on success or any other
+# value on error.
+#
+# In order to enable or disable this script just change the execution
+# bits.
+#
+# By default this script does nothing.
+
+# Print the IP address
+_IP=$(hostname -I) || true
+if [ "$_IP" ]; then
+  printf "My IP address is %s\n" "$_IP"
+fi
+
+# Do not touch lines below here, they are dynamically changed by CanAx PHP (to switch from debug mode to live data mode)
+
+ #sudo modprobe vcan
+ #sudo ip link add dev vcan0 type vcan
+ #sudo ip link set up vcan0
+ #sudo canplayer -I /var/www/html/logs/trip.log -l i -v vcan0=can0 &
+
+cd /var/www/html
+ sudo node canAx.js
+exit 0
